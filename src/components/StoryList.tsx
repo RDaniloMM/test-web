@@ -51,7 +51,7 @@ const StoryList = ({
     try {
       const createdStory = await addStory(img.secure_url);
       setStoryList((prev) => [createdStory!, ...prev]);
-      setImg(null)
+      setImg(null);
     } catch (err) {}
   };
 
@@ -62,7 +62,7 @@ const StoryList = ({
   return (
     <>
       <CldUploadWidget
-        uploadPreset="social"
+        uploadPreset='social'
         onSuccess={(result, { widget }) => {
           setImg(result.info);
           widget.close();
@@ -70,25 +70,25 @@ const StoryList = ({
       >
         {({ open }) => {
           return (
-            <div className="flex flex-col items-center gap-2 cursor-pointer relative">
+            <div className='flex flex-col items-center gap-2 cursor-pointer relative'>
               <Image
                 src={img?.secure_url || user?.imageUrl || "/noAvatar.png"}
-                alt=""
+                alt=''
                 width={80}
                 height={80}
-                className="w-20 h-20 rounded-full ring-2 object-cover"
+                className='w-20 h-20 rounded-full ring-2 object-cover'
                 onClick={() => open()}
               />
               {img ? (
                 <form action={add}>
-                  <button className="text-xs bg-blue-500 p-1 rounded-md text-white">
+                  <button className='text-xs bg-blue-500 p-1 rounded-md text-white'>
                     Send
                   </button>
                 </form>
               ) : (
-                <span className="font-medium">Add a Story</span>
+                <span className='font-medium'>Add a Story</span>
               )}
-              <div className="absolute text-6xl text-gray-200 top-1">+</div>
+              <div className='absolute text-6xl text-gray-200 top-1'>+</div>
             </div>
           );
         }}
@@ -96,17 +96,17 @@ const StoryList = ({
       {/* STORY */}
       {optimisticStories.map((story) => (
         <div
-          className="flex flex-col items-center gap-2 cursor-pointer"
+          className='flex flex-col items-center gap-2 cursor-pointer'
           key={story.id}
         >
           <Image
             src={story.user.avatar || "/noAvatar.png"}
-            alt=""
+            alt=''
             width={80}
             height={80}
-            className="w-20 h-20 rounded-full ring-2"
+            className='w-20 h-20 rounded-full ring-2'
           />
-          <span className="font-medium">
+          <span className='font-medium'>
             {story.user.name || story.user.username}
           </span>
         </div>
