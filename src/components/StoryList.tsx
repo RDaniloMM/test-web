@@ -44,6 +44,7 @@ const StoryList = ({
         work: "",
         school: "",
         website: "",
+        isOnline: false,
         createdAt: new Date(Date.now()),
       },
     });
@@ -86,7 +87,9 @@ const StoryList = ({
                   </button>
                 </form>
               ) : (
-                <span className='font-medium text-GrayCalido'>Agrega una historia</span>
+                <span className='font-medium text-GrayCalido'>
+                  Agrega una historia
+                </span>
               )}
               <div className='absolute text-6xl text-gray-200 top-1'>+</div>
             </div>

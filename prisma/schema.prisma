@@ -19,6 +19,7 @@ model User {
   school                 String?
   work                   String?
   website                String?
+  isOnline               Boolean         @default(false)
   createdAt              DateTime        @default(now())
   posts                  Post[]
   comments               Comment[]
@@ -37,32 +38,32 @@ model User {
 }
 
 model Message {
-  id        String   @id @default(uuid())
-  content   String
-  createdAt DateTime @default(now())
-  sender    User     @relation("MessagesSent", fields: [senderId], references: [id], onDelete: Cascade)
-  senderId  String
-  receiver  User?    @relation("MessagesReceived", fields: [receiverId], references: [id], onDelete: Cascade)
+  id         String   @id @default(uuid())
+  content    String
+  createdAt  DateTime @default(now())
+  sender     User     @relation("MessagesSent", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId   String
+  receiver   User?    @relation("MessagesReceived", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId String?
-  room      Room?    @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  roomId    String?
+  room       Room?    @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId     String?
 }
 
 model Room {
-  id        String        @id @default(uuid())
-  name      String
-  owner     User          @relation("RoomsOwned", fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId   String
-  members   RoomMember[]
-  messages  Message[]
+  id       String       @id @default(uuid())
+  name     String
+  owner    User         @relation("RoomsOwned", fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId  String
+  members  RoomMember[]
+  messages Message[]
 }
 
 model RoomMember {
-  id        String   @id @default(uuid())
-  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  roomId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String
+  id     String @id @default(uuid())
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   @@unique([roomId, userId]) // Un usuario no puede estar repetido en una sala.
 }
