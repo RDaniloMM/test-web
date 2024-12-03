@@ -126,7 +126,9 @@ export default function ChatPage() {
                 </div>
               )}
               <div>
-                <h2 className='text-xl font-bold'>{selectedUser.username}</h2>
+                <h2 className='text-xl font-bold text-gray-200'>
+                  {selectedUser.username}
+                </h2>
                 {selectedUser.isOnline && (
                   <span className='text-green-500 text-xs'>Online</span>
                 )}
