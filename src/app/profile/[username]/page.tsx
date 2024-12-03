@@ -5,15 +5,15 @@ import prisma from "@/lib/client";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { UserWithFollowers } from "@/types/types";
 
-const ProfilePage = async () => {
-  const { userId: currentUserId } = auth();
+const ProfilePage = async ({ params }: { params: { username: string } }) => {
+  const { username } = params; // Captura el parámetro username de la URL
 
-  if (!currentUserId) return notFound();
-
-  const user = await prisma.user.findFirst({
+  // Busca el usuario por su username
+  const user: UserWithFollowers | null = await prisma.user.findFirst({
     where: {
-      id: currentUserId,
+      username,
     },
     include: {
       _count: {
@@ -26,20 +26,23 @@ const ProfilePage = async () => {
     },
   });
 
-  if (!user) return notFound();
+  if (!user) return notFound(); // Si no se encuentra el usuario, muestra 404
 
-  let isBlocked;
-  const res = await prisma.block.findFirst({
-    where: {
-      blockerId: user.id,
-      blockedId: currentUserId,
-    },
-  });
+  const { userId: currentUserId } = auth();
 
-  if (res) isBlocked = true;
-  else isBlocked = false;
+  let isBlocked = false;
+  if (currentUserId) {
+    const res = await prisma.block.findFirst({
+      where: {
+        blockerId: user.id,
+        blockedId: currentUserId,
+      },
+    });
 
-  if (isBlocked) return notFound();
+    if (res) isBlocked = true;
+  }
+
+  if (isBlocked) return notFound(); // Si el usuario está bloqueado, muestra 404
 
   return (
     <div className='flex gap-6 pt-6'>
