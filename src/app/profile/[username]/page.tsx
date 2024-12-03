@@ -1,3 +1,4 @@
+// src/app/profile/[username]/page.tsx
 
 import Feed from "@/components/feed/Feed";
 import LeftMenu from "@/components/leftMenu/LeftMenu";
@@ -8,11 +9,13 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 const ProfilePage = async ({ params }: { params: { username: string } }) => {
+  // Aquí params ya debería estar disponible, pero aseguramos que se maneje asincrónicamente
   const username = params.username;
 
+  // Obtén los datos del usuario de manera asincrónica
   const user = await prisma.user.findFirst({
     where: {
-      username,
+      username, // Estás buscando el usuario por su nombre de usuario
     },
     include: {
       _count: {
@@ -25,12 +28,14 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
     },
   });
 
+  // Si no se encuentra el usuario, se redirige a una página 404
   if (!user) return notFound();
 
+  // Obtener el ID del usuario autenticado
   const { userId: currentUserId } = auth();
 
+  // Verificar si el usuario actual está bloqueado por el usuario al que se está accediendo
   let isBlocked;
-
   if (currentUserId) {
     const res = await prisma.block.findFirst({
       where: {
@@ -44,6 +49,7 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
     isBlocked = false;
   }
 
+  // Si el usuario está bloqueado, redirigir a una página 404
   if (isBlocked) return notFound();
 
   return (
@@ -89,7 +95,7 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
               </div>
             </div>
           </div>
-          <Feed username={user.username}/>
+          <Feed username={user.username} />
         </div>
       </div>
       <div className="hidden lg:block w-[30%]">

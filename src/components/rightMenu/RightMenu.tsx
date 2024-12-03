@@ -1,5 +1,4 @@
 import { User } from "@prisma/client";
-import Ad from "../Ad";
 import Birthdays from "./Birthdays";
 import FriendRequests from "./FriendRequests";
 import UserInfoCard from "./UserInfoCard";
@@ -21,7 +20,6 @@ const RightMenu = ({ user }: { user?: User }) => {
       ) : null}
       <FriendRequests />
       <Birthdays />
-      <Ad size="md" />
     </div>
   );
 };
