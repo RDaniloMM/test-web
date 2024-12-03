@@ -8,8 +8,14 @@ import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-const ProfilePage = async ({ params }: { params: { username: string } }) => {
-  // Aquí params ya debería estar disponible, pero aseguramos que se maneje asincrónicamente
+interface ProfilePageProps {
+  params: {
+    username: string;
+  };
+}
+
+const ProfilePage = async ({ params }: ProfilePageProps) => {
+  // Aquí params ya debería estar disponible
   const username = params.username;
 
   // Obtén los datos del usuario de manera asincrónica
