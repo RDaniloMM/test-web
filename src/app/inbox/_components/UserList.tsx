@@ -14,7 +14,11 @@ interface UserWithLastMessage {
   };
 }
 
-const UserList = () => {
+interface UserListProps {
+  onUserSelect: (userId: string) => void; // Función para pasar el userId al componente padre
+}
+
+const UserList = ({ onUserSelect }: UserListProps) => {
   const { user: clerkUser } = useUser();
   const [followings, setFollowings] = useState<UserWithLastMessage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -63,6 +67,7 @@ const UserList = () => {
             <li
               key={user.id}
               className='flex items-center justify-between p-2 rounded-lg hover:bg-GrayOscuro transition'
+              onClick={() => onUserSelect(user.id)} // Llamamos a la función al hacer clic
             >
               <div className='flex items-center space-x-4'>
                 <div
