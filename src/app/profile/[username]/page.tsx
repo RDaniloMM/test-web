@@ -1,3 +1,4 @@
+"use server";
 import Feed from "@/components/feed/Feed";
 import LeftMenu from "@/components/leftMenu/LeftMenu";
 import RightMenu from "@/components/rightMenu/RightMenu";
@@ -5,19 +6,12 @@ import prisma from "@/lib/client";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { UserWithFollowers } from '@/types/types';
 
-// Define the type for the params
-type ProfilePageProps = {
-  params: {
-    username: string;
-  };
-};
 
 const ProfilePage = async ({ params }: { params: { username: string } }) => {
-
-  const username = params.username;
-
-  const user = await prisma.user.findFirst({
+  const { username } = params;
+  const user: UserWithFollowers | null = await prisma.user.findFirst({
     where: {
       username,
     },
