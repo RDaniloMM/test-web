@@ -5,14 +5,13 @@ import prisma from "@/lib/client";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { UserWithFollowers } from "@/types/types";
 
 const ProfilePage = async () => {
   const { userId: currentUserId } = auth();
 
   if (!currentUserId) return notFound();
 
-  const user: UserWithFollowers | null = await prisma.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
       id: currentUserId,
     },

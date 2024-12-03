@@ -35,7 +35,7 @@ const items = [
   { title: "Chats", url: "/inbox", icon: ChatBubbleLeftIcon },
   { title: "Recursos educativos", url: "/inbox", icon: CogIcon },
   { title: "Cursos", url: coursesRoute, icon: BookOpenIcon },
-  { title: "Mis clases", url: "#", icon: AcademicCapIcon },
+
 ];
 
 export function AppSidebar({ isCollapsed, onToggleCollapse }: AppSidebarProps) {

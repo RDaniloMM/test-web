@@ -33,7 +33,6 @@ const MobileMenu = () => {
           <Link href='/inbox'>Chats</Link>
           <Link href='/'>Recursos Educativos</Link>
           <Link href='/'>Cursos</Link>
-          <Link href='/'>Mis Clases</Link>
         </div>
       )}
     </div>

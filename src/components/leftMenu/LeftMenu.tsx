@@ -43,7 +43,7 @@ const LeftMenu = ({ type }: { type: "home" | "profile" }) => {
             width={20}
             height={20}
           />
-          <span>Recursos Educaivos</span>
+          <span>Recursos Educativos</span>
         </Link>
         <hr className='border-t-1 border-BorderColor w-36 self-center' />
         <Link
@@ -59,31 +59,8 @@ const LeftMenu = ({ type }: { type: "home" | "profile" }) => {
           <span>Cursos</span>
         </Link>
         <hr className='border-t-1 border-BorderColor w-36 self-center' />
-        <Link
-          href='/'
-          className='flex items-center gap-4 p-2 rounded-lg hover:bg-GrayOscuro hover:text-WhiteCalido'
-        >
-          <Image
-            src='/albums.png'
-            alt=''
-            width={20}
-            height={20}
-          />
-          <span>Mis clases</span>
-        </Link>
+
         <hr className='border-t-1 border-BorderColor w-36 self-center' />
-        <Link
-          href='/'
-          className='flex items-center gap-4 p-2 rounded-lg hover:bg-GrayOscuro hover:text-WhiteCalido'
-        >
-          <Image
-            src='/settings.png'
-            alt=''
-            width={20}
-            height={20}
-          />
-          <span>Configuración</span>
-        </Link>
       </div>
     </div>
   );
