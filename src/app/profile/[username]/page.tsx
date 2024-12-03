@@ -5,8 +5,31 @@ import prisma from "@/lib/client";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
-const ProfilePage = async ({ params }: { params: { username: string } }) => {
+// Define the type for the params
+type ProfilePageProps = {
+  params: {
+    username: string;
+  };
+};
+
+// Define the metadata function if needed
+export async function generateMetadata({
+  params,
+}: ProfilePageProps): Promise<Metadata> {
+  const user = await prisma.user.findFirst({
+    where: { username: params.username },
+  });
+
+  return {
+    title: user
+      ? `${user.name || user.username}'s Profile`
+      : "Profile Not Found",
+  };
+}
+
+const ProfilePage = async ({ params }: ProfilePageProps) => {
   const username = params.username;
 
   const user = await prisma.user.findFirst({
