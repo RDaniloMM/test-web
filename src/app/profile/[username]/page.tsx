@@ -6,8 +6,7 @@ import prisma from "@/lib/client";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { UserWithFollowers } from '@/types/types';
-
+import { UserWithFollowers } from "@/types/types";
 
 const ProfilePage = async ({ params }: { params: { username: string } }) => {
   const { username } = params;
@@ -76,16 +75,22 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
             </h1>
             <div className='flex items-center justify-center gap-12 mb-4'>
               <div className='flex flex-col items-center'>
-                <span className='font-medium'>{user._count.posts}</span>
-                <span className='text-sm'>Posts</span>
+                <span className='font-medium text-slate-50'>
+                  {user._count.posts}
+                </span>
+                <span className='text-sm text-slate-50'>Publicaciones</span>
               </div>
               <div className='flex flex-col items-center'>
-                <span className='font-medium'>{user._count.followers}</span>
-                <span className='text-sm'>Followers</span>
+                <span className='font-medium text-slate-50'>
+                  {user._count.followers}
+                </span>
+                <span className='text-sm text-slate-50'>Seguidores</span>
               </div>
               <div className='flex flex-col items-center'>
-                <span className='font-medium'>{user._count.followings}</span>
-                <span className='text-sm'>Following</span>
+                <span className='font-medium text-slate-50'>
+                  {user._count.followings}
+                </span>
+                <span className='text-sm text-slate-50'>Siguiendo</span>
               </div>
             </div>
           </div>
