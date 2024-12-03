@@ -43,7 +43,7 @@ const FriendRequestList = ({ requests }: { requests: RequestWithUser[] }) => {
               height={40}
               className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="font-semibold">
+            <span className="font-semibold text-WhiteCalido">
               {request.sender.name && request.sender.surname
                 ? request.sender.name + " " + request.sender.surname
                 : request.sender.username}

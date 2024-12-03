@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const Ad = ({ size }: { size: "sm" | "md" | "lg" }) => {
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md text-sm ">
+    <div className="p-4 bg-BlackCalido rounded-lg shadow-md text-sm border border-BorderColor">
       {/* TOP */}
-      <div className="flex items-center justify-between text-gray-500 font-medium">
-        <span>Sponsored Ads</span>
+      <div className="flex items-center justify-between text-WhiteCalido font-medium">
+        <span>Anuncios</span>
         <Image src="/more.png" alt="" width={16} height={16} />
       </div>
       {/* BOTTOM */}
@@ -32,17 +32,17 @@ const Ad = ({ size }: { size: "sm" | "md" | "lg" }) => {
             height={24}
             className="rounded-full w-6 h-6 object-cover"
           />
-          <span className="text-blue-500 font-medium">BigChef Lounge</span>
+          <span className="text-WhiteCalido font-medium">UNJBG</span>
         </div>
-        <p className={size === "sm" ? "text-xs" : "text-sm"}>
+        <p className={`${size === "sm" ? "text-xs" : "text-sm"} text-GrayCalido`}>
           {size === "sm"
             ? "Lorem ipsum dolor sit amet consectetur adipisicing elit."
             : size === "md"
             ? "Lorem ipsum dolor sit amet consectetur adipisicing elit.  Lorem ipsum dolor sit amet consectetur adipisicing elit."
             : "Lorem ipsum dolor sit amet consectetur adipisicing elit.  Lorem ipsum dolor sit amet consectetur adipisicing elit.  Lorem ipsum dolor sit amet consectetur adipisicing elit."}
         </p>
-        <button className="bg-gray-200 text-gray-500 p-2 text-xs rounded-lg">
-          Learn more
+        <button className="bg-VioletCalido text-WhiteCalido p-2 text-xs rounded-lg">
+          + Ver más
         </button>
       </div>
     </div>

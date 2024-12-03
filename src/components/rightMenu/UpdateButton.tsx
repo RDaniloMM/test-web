@@ -7,10 +7,10 @@ const UpdateButton = () => {
 
   return (
     <button
-      className="bg-blue-500 p-2 mt-2 rounded-md text-white disabled:bg-opacity-50 disabled:cursor-not-allowed"
+      className="bg-VioletCalido p-2 mt-2 rounded-md text-WhiteCalido disabled:bg-opacity-50 disabled:cursor-not-allowed"
       disabled={pending}
     >
-      {pending ? "Updating..." : "Update"}
+      {pending ? "Actualizando..." : "Actualizar"}
     </button>
   );
 };

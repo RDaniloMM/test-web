@@ -30,7 +30,7 @@ const CommentList = ({
       postId: postId,
       user: {
         id: user.id,
-        username: "Sending Please Wait...",
+        username: "Enviando, espero porfavor...",
         avatar: user.imageUrl || "/noAvatar.png",
         cover: "",
         description: "",
@@ -66,12 +66,12 @@ const CommentList = ({
           />
           <form
             action={add}
-            className="flex-1 flex items-center justify-between bg-slate-100 rounded-xl text-sm px-6 py-2 w-full"
+            className="flex-1 flex items-center justify-between bg-transparent rounded-xl text-sm px-6 py-2 w-full border border-BorderColor"
           >
             <input
               type="text"
-              placeholder="Write a comment..."
-              className="bg-transparent outline-none flex-1"
+              placeholder="Escribe un comentario..."
+              className="bg-transparent outline-none flex-1 placeholder-GrayCalido"
               onChange={(e) => setDesc(e.target.value)}
             />
             <Image
@@ -113,10 +113,10 @@ const CommentList = ({
                     height={12}
                     className="cursor-pointer w-4 h-4"
                   />
-                  <span className="text-gray-300">|</span>
-                  <span className="text-gray-500">0 Likes</span>
+                  <span className="text-GrayCalido">|</span>
+                  <span className="text-GrayCalido">0 Likes</span>
                 </div>
-                <div className="">Reply</div>
+                <div className="text-GrayCalido">Responder</div>
               </div>
             </div>
             {/* ICON */}

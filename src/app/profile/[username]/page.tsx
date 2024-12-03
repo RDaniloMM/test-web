@@ -69,23 +69,23 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
                 className="w-32 h-32 rounded-full absolute left-0 right-0 m-auto -bottom-16 ring-4 ring-white object-cover"
               />
             </div>
-            <h1 className="mt-20 mb-4 text-2xl font-medium">
+            <h1 className="mt-20 mb-4 text-2xl font-medium text-WhiteCalido">
               {user.name && user.surname
                 ? user.name + " " + user.surname
                 : user.username}
             </h1>
-            <div className="flex items-center justify-center gap-12 mb-4">
+            <div className="flex items-center justify-center gap-12 mb-4 text-WhiteCalido">
               <div className="flex flex-col items-center">
                 <span className="font-medium">{user._count.posts}</span>
-                <span className="text-sm">Posts</span>
+                <span className="text-sm">Publicaciones</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="font-medium">{user._count.followers}</span>
-                <span className="text-sm">Followers</span>
+                <span className="text-sm">Seguidores</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="font-medium">{user._count.followings}</span>
-                <span className="text-sm">Following</span>
+                <span className="text-sm">Seguidos</span>
               </div>
             </div>
           </div>

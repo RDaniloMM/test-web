@@ -24,10 +24,10 @@ const UpdateUser = ({ user }: { user: User }) => {
   return (
     <div className="">
       <span
-        className="text-blue-500 text-xs cursor-pointer"
+        className="text-VioletCalido text-xs cursor-pointer"
         onClick={() => setOpen(true)}
       >
-        Update
+        Actualizar
       </span>
       {open && (
         <div className="absolute w-screen h-screen top-0 left-0 bg-black bg-opacity-65 flex items-center justify-center z-50 ">
@@ -35,12 +35,12 @@ const UpdateUser = ({ user }: { user: User }) => {
             action={(formData) =>
               formAction({ formData, cover: cover?.secure_url || "" })
             }
-            className="p-12 bg-white rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/2 xl:w-1/3 relative"
+            className="p-12 bg-BlackCalido rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/2 xl:w-1/3 relative border border-BorderColor"
           >
             {/* TITLE */}
-            <h1>Update Profile</h1>
-            <div className="mt-4 text-xs text-gray-500">
-              Use the navbar profile to change the avatar or username.
+            <h1 className="text-WhiteCalido">Actualizar Perfil</h1>
+            <div className="mt-4 text-xs text-GrayCalido">
+             Utilice el perfil de la barra de navegación para cambiar el avatar o el nombre de usuario.
             </div>
             {/* COVER PIC UPLOAD */}
             <CldUploadWidget
@@ -53,7 +53,7 @@ const UpdateUser = ({ user }: { user: User }) => {
                     className="flex flex-col gap-4 my-4"
                     onClick={() => open()}
                   >
-                    <label htmlFor="">Cover Picture</label>
+                    <label htmlFor="" className="text-WhiteCalido">Imágen de Portada</label>
                     <div className="flex items-center gap-2 cursor-pointer">
                       <Image
                         src={user.cover || "/noCover.png"}
@@ -62,8 +62,8 @@ const UpdateUser = ({ user }: { user: User }) => {
                         height={32}
                         className="w-12 h-8 rounded-md object-cover"
                       />
-                      <span className="text-xs underline text-gray-600">
-                        Change
+                      <span className="text-xs underline text-GrayCalido">
+                        Cambiar
                       </span>
                     </div>
                   </div>
@@ -75,8 +75,8 @@ const UpdateUser = ({ user }: { user: User }) => {
             <div className="flex flex-wrap justify-between gap-2 xl:gap-4">
               {/* INPUT */}
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  First Name
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Nombre
                 </label>
                 <input
                   type="text"
@@ -86,8 +86,8 @@ const UpdateUser = ({ user }: { user: User }) => {
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  Surname
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Apellido
                 </label>
                 <input
                   type="text"
@@ -98,8 +98,8 @@ const UpdateUser = ({ user }: { user: User }) => {
               </div>
               {/* INPUT */}
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  Description
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Descripción
                 </label>
                 <input
                   type="text"
@@ -110,8 +110,8 @@ const UpdateUser = ({ user }: { user: User }) => {
               </div>
               {/* INPUT */}
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  City
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Ciudad
                 </label>
                 <input
                   type="text"
@@ -123,8 +123,8 @@ const UpdateUser = ({ user }: { user: User }) => {
               {/* INPUT */}
 
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  School
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Universidad
                 </label>
                 <input
                   type="text"
@@ -136,8 +136,8 @@ const UpdateUser = ({ user }: { user: User }) => {
               {/* INPUT */}
 
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  Work
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Trabajo
                 </label>
                 <input
                   type="text"
@@ -149,8 +149,8 @@ const UpdateUser = ({ user }: { user: User }) => {
               {/* INPUT */}
 
               <div className="flex flex-col gap-4">
-                <label htmlFor="" className="text-xs text-gray-500">
-                  Website
+                <label htmlFor="" className="text-xs text-GrayCalido">
+                  Sitio web
                 </label>
                 <input
                   type="text"

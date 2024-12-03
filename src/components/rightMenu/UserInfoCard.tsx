@@ -9,7 +9,7 @@ import UpdateUser from "./UpdateUser";
 const UserInfoCard = async ({ user }: { user: User }) => {
   const createdAtDate = new Date(user.createdAt);
 
-  const formattedDate = createdAtDate.toLocaleDateString("en-US", {
+  const formattedDate = createdAtDate.toLocaleDateString("es-PE", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -48,22 +48,22 @@ const UserInfoCard = async ({ user }: { user: User }) => {
     followReqRes ? (isFollowingSent = true) : (isFollowingSent = false);
   }
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-4">
+    <div className="p-4 bg-BlackCalido rounded-lg shadow-md text-sm flex flex-col gap-4 border border-BorderColor">
       {/* TOP */}
       <div className="flex justify-between items-center font-medium">
-        <span className="text-gray-500">User Information</span>
+        <span className="text-WhiteCalido">Información del usuario</span>
         {currentUserId === user.id ? (
           <UpdateUser user={user}/>
         ) : (
-          <Link href="/" className="text-blue-500 text-xs">
-            See all
+          <Link href="/" className="text-VioletCalido text-xs">
+            Ver todo
           </Link>
         )}
       </div>
       {/* BOTTOM */}
-      <div className="flex flex-col gap-4 text-gray-500">
+      <div className="flex flex-col gap-4 text-GrayCalido">
         <div className="flex items-center gap-2">
-          <span className="text-xl text-black">
+          <span className="text-xl text-WhiteCalido">
             {" "}
             {user.name && user.surname
               ? user.name + " " + user.surname
@@ -107,7 +107,7 @@ const UserInfoCard = async ({ user }: { user: User }) => {
           )}
           <div className="flex gap-1 items-center">
             <Image src="/date.png" alt="" width={16} height={16} />
-            <span>Joined {formattedDate}</span>
+            <span>Se unio el {formattedDate}</span>
           </div>
         </div>
         {currentUserId && currentUserId !== user.id && (

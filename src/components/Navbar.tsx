@@ -21,7 +21,7 @@ const Navbar = () => {
         />
         <Link
           href='/'
-          className='font-bold text-xl text-blue-600'
+          className='font-bold text-xl text-WhiteCalido'
         >
           EDUCONNECT
         </Link>
@@ -29,52 +29,31 @@ const Navbar = () => {
       {/* CENTER */}
       <div className='hidden md:flex w-[50%] text-sm items-center justify-between'>
         {/* LINKS */}
-        <div className='flex gap-6 text-gray-600'>
+        <div className='flex gap-6 text-GrayCalido'>
           <Link
             href='/'
-            className='flex items-center gap-2'
+            className='flex items-center gap-2 hover:text-WhiteCalido'
           >
-            <Image
-              src='/home.png'
-              alt='Homepage'
-              width={16}
-              height={16}
-              className='w-4 h-4'
-            />
-            <span>Homepage</span>
+            <span>Recursos</span>
           </Link>
           <Link
             href='/'
-            className='flex items-center gap-2'
+            className='flex items-center gap-2 hover:text-WhiteCalido'
           >
-            <Image
-              src='/friends.png'
-              alt='Friends'
-              width={16}
-              height={16}
-              className='w-4 h-4'
-            />
-            <span>Friends</span>
+            <span>Cursos</span>
           </Link>
           <Link
             href='/'
-            className='flex items-center gap-2'
+            className='flex items-center gap-2 hover:text-WhiteCalido'
           >
-            <Image
-              src='/stories.png'
-              alt='Stories'
-              width={16}
-              height={16}
-              className='w-4 h-4'
-            />
-            <span>Stories</span>
+            <span>Foros de discusión</span>
           </Link>
         </div>
-        <div className='hidden xl:flex p-2 bg-slate-100 items-center rounded-xl'>
+        <div className='hidden xl:flex p-2 bg-BlackCalido items-center rounded-xl bg-BlackCalido border border-BorderColor'>
           <input
             type='text'
-            placeholder='search...'
-            className='bg-transparent outline-none'
+            placeholder='Buscar...'
+            className='bg-transparent outline-none placeholder-GrayCalido'
           />
           <Image
             src='/search.png'
@@ -118,14 +97,14 @@ const Navbar = () => {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            <div className='flex items-center gap-2 text-sm'>
+            <div className='flex items-center gap-2 text-sm text-WhiteCalido'>
               <Image
                 src='/login.png'
                 alt=''
                 width={20}
                 height={20}
               />
-              <Link href='/sign-in'>Login/Register</Link>
+              <Link href='/sign-in'>Login/Registro</Link>
             </div>
           </SignedOut>
         </ClerkLoaded>

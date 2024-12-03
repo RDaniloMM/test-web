@@ -86,7 +86,7 @@ const StoryList = ({
                   </button>
                 </form>
               ) : (
-                <span className='font-medium'>Add a Story</span>
+                <span className='font-medium text-GrayCalido'>Agrega una historia</span>
               )}
               <div className='absolute text-6xl text-gray-200 top-1'>+</div>
             </div>
