@@ -41,41 +41,42 @@ const PostInteraction = ({
     } catch (err) {}
   };
   return (
-    <div className="flex items-center justify-between text-sm my-4">
-      <div className="flex gap-8">
-        <div className="flex items-center gap-4 bg-transparent p-2 rounded-xl border border-BorderColor">
+    <div className='flex items-center justify-between text-sm my-4'>
+      <div className='flex gap-8'>
+        <div className='flex items-center gap-4 bg-transparent p-2 rounded-xl border border-BorderColor'>
           <form action={likeAction}>
             <button>
               <Image
                 src={optimisticLike.isLiked ? "/liked.png" : "/like.png"}
                 width={16}
                 height={16}
-                alt=""
-                className="cursor-pointer"
+                alt=''
+                className='cursor-pointer'
               />
             </button>
           </form>
-          <span className="text-GrayCalido">|</span>
-          <span className="text-GrayCalido">
+          <span className='text-GrayCalido'>|</span>
+          <span className='text-GrayCalido'>
             {optimisticLike.likeCount}
-            <span className="hidden md:inline"> Likes</span>
+            <span className='hidden md:inline'> Likes</span>
           </span>
         </div>
-        <div className="flex items-center gap-4 bg-transparent p-2 rounded-xl border border-BorderColor">
+        <div className='flex items-center gap-4 bg-transparent p-2 rounded-xl border border-BorderColor'>
           <Image
-            src="/comment.png"
+            src='/comment.png'
             width={16}
             height={16}
-            alt=""
-            className="cursor-pointer"
+            alt=''
+            className='cursor-pointer'
           />
-          <span className="text-GrayCalido">|</span>
-          <span className="text-GrayCalido">
-            {commentNumber}<span className="hidden md:inline"> Comentarios</span>
+          <span className='text-GrayCalido'>|</span>
+          <span className='text-GrayCalido'>
+            {commentNumber}
+            <span className='hidden md:inline'> Comentarios</span>
           </span>
         </div>
       </div>
-      <div className="">
+      {/*       <div className="">
         <div className="flex items-center gap-4 bg-transparent p-2 rounded-xl border border-BorderColor">
           <Image
             src="/share.png"
@@ -89,7 +90,7 @@ const PostInteraction = ({
             <span className="hidden md:inline"> Compartir</span>
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

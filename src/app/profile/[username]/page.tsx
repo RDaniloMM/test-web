@@ -1,4 +1,3 @@
-"use server";
 import Feed from "@/components/feed/Feed";
 import LeftMenu from "@/components/leftMenu/LeftMenu";
 import RightMenu from "@/components/rightMenu/RightMenu";
@@ -8,11 +7,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { UserWithFollowers } from "@/types/types";
 
-const ProfilePage = async ({ params }: { params: { username: string } }) => {
-  const { username } = params;
+const ProfilePage = async () => {
+  const { userId: currentUserId } = auth();
+
+  if (!currentUserId) return notFound();
+
   const user: UserWithFollowers | null = await prisma.user.findFirst({
     where: {
-      username,
+      id: currentUserId,
     },
     include: {
       _count: {
@@ -27,21 +29,16 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
 
   if (!user) return notFound();
 
-  const { userId: currentUserId } = auth();
-
   let isBlocked;
-  if (currentUserId) {
-    const res = await prisma.block.findFirst({
-      where: {
-        blockerId: user.id,
-        blockedId: currentUserId,
-      },
-    });
+  const res = await prisma.block.findFirst({
+    where: {
+      blockerId: user.id,
+      blockedId: currentUserId,
+    },
+  });
 
-    if (res) isBlocked = true;
-  } else {
-    isBlocked = false;
-  }
+  if (res) isBlocked = true;
+  else isBlocked = false;
 
   if (isBlocked) return notFound();
 
