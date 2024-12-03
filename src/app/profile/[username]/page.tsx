@@ -5,8 +5,6 @@ import prisma from "@/lib/client";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import { FC } from "react";
 
 // Define the type for the params
 type ProfilePageProps = {
@@ -15,7 +13,8 @@ type ProfilePageProps = {
   };
 };
 
-const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
+const ProfilePage = async ({ params }: { params: { username: string } }) => {
+
   const username = params.username;
 
   const user = await prisma.user.findFirst({
