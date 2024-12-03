@@ -1,4 +1,4 @@
-// src/app/profile/[username]/page.tsx
+"use server";
 
 import Feed from "@/components/feed/Feed";
 import LeftMenu from "@/components/leftMenu/LeftMenu";
@@ -9,27 +9,18 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface ProfilePageProps {
-  params: {
-    username: string;
-  };
+  params: { username: string };
 }
 
 const ProfilePage = async ({ params }: ProfilePageProps) => {
-  // Aquí params ya debería estar disponible
-  const username = params.username;
+  const { username } = params;
 
   // Obtén los datos del usuario de manera asincrónica
   const user = await prisma.user.findFirst({
-    where: {
-      username, // Estás buscando el usuario por su nombre de usuario
-    },
+    where: { username },
     include: {
       _count: {
-        select: {
-          followers: true,
-          followings: true,
-          posts: true,
-        },
+        select: { followers: true, followings: true, posts: true },
       },
     },
   });
@@ -59,52 +50,52 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   if (isBlocked) return notFound();
 
   return (
-    <div className="flex gap-6 pt-6">
-      <div className="hidden xl:block w-[20%]">
-        <LeftMenu type="profile" />
+    <div className='flex gap-6 pt-6'>
+      <div className='hidden xl:block w-[20%]'>
+        <LeftMenu type='profile' />
       </div>
-      <div className="w-full lg:w-[70%] xl:w-[50%]">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col items-center justify-center">
-            <div className="w-full h-64 relative">
+      <div className='w-full lg:w-[70%] xl:w-[50%]'>
+        <div className='flex flex-col gap-6'>
+          <div className='flex flex-col items-center justify-center'>
+            <div className='w-full h-64 relative'>
               <Image
                 src={user.cover || "/noCover.png"}
-                alt=""
+                alt=''
                 fill
-                className="rounded-md object-cover"
+                className='rounded-md object-cover'
               />
               <Image
                 src={user.avatar || "/noAvatar.png"}
-                alt=""
+                alt=''
                 width={128}
                 height={128}
-                className="w-32 h-32 rounded-full absolute left-0 right-0 m-auto -bottom-16 ring-4 ring-white object-cover"
+                className='w-32 h-32 rounded-full absolute left-0 right-0 m-auto -bottom-16 ring-4 ring-white object-cover'
               />
             </div>
-            <h1 className="mt-20 mb-4 text-2xl font-medium">
+            <h1 className='mt-20 mb-4 text-2xl font-medium'>
               {user.name && user.surname
                 ? user.name + " " + user.surname
                 : user.username}
             </h1>
-            <div className="flex items-center justify-center gap-12 mb-4">
-              <div className="flex flex-col items-center">
-                <span className="font-medium">{user._count.posts}</span>
-                <span className="text-sm">Posts</span>
+            <div className='flex items-center justify-center gap-12 mb-4'>
+              <div className='flex flex-col items-center'>
+                <span className='font-medium'>{user._count.posts}</span>
+                <span className='text-sm'>Posts</span>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="font-medium">{user._count.followers}</span>
-                <span className="text-sm">Followers</span>
+              <div className='flex flex-col items-center'>
+                <span className='font-medium'>{user._count.followers}</span>
+                <span className='text-sm'>Followers</span>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="font-medium">{user._count.followings}</span>
-                <span className="text-sm">Following</span>
+              <div className='flex flex-col items-center'>
+                <span className='font-medium'>{user._count.followings}</span>
+                <span className='text-sm'>Following</span>
               </div>
             </div>
           </div>
           <Feed username={user.username} />
         </div>
       </div>
-      <div className="hidden lg:block w-[30%]">
+      <div className='hidden lg:block w-[30%]'>
         <RightMenu user={user} />
       </div>
     </div>
