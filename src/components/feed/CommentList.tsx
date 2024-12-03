@@ -40,6 +40,7 @@ const CommentList = ({
         work: "",
         school: "",
         website: "",
+        isOnline: false,
         createdAt: new Date(Date.now()),
       },
     });
@@ -56,76 +57,79 @@ const CommentList = ({
   return (
     <>
       {user && (
-        <div className="flex items-center gap-4">
+        <div className='flex items-center gap-4'>
           <Image
             src={user.imageUrl || "noAvatar.png"}
-            alt=""
+            alt=''
             width={32}
             height={32}
-            className="w-8 h-8 rounded-full"
+            className='w-8 h-8 rounded-full'
           />
           <form
             action={add}
-            className="flex-1 flex items-center justify-between bg-transparent rounded-xl text-sm px-6 py-2 w-full border border-BorderColor"
+            className='flex-1 flex items-center justify-between bg-transparent rounded-xl text-sm px-6 py-2 w-full border border-BorderColor'
           >
             <input
-              type="text"
-              placeholder="Escribe un comentario..."
-              className="bg-transparent outline-none flex-1 placeholder-GrayCalido"
+              type='text'
+              placeholder='Escribe un comentario...'
+              className='bg-transparent outline-none flex-1 placeholder-GrayCalido'
               onChange={(e) => setDesc(e.target.value)}
             />
             <Image
-              src="/emoji.png"
-              alt=""
+              src='/emoji.png'
+              alt=''
               width={16}
               height={16}
-              className="cursor-pointer"
+              className='cursor-pointer'
             />
           </form>
         </div>
       )}
-      <div className="">
+      <div className=''>
         {/* COMMENT */}
         {optimisticComments.map((comment) => (
-          <div className="flex gap-4 justify-between mt-6" key={comment.id}>
+          <div
+            className='flex gap-4 justify-between mt-6'
+            key={comment.id}
+          >
             {/* AVATAR */}
             <Image
               src={comment.user.avatar || "noAvatar.png"}
-              alt=""
+              alt=''
               width={40}
               height={40}
-              className="w-10 h-10 rounded-full"
+              className='w-10 h-10 rounded-full'
             />
             {/* DESC */}
-            <div className="flex flex-col gap-2 flex-1">
-              <span className="font-medium">
+            <div className='flex flex-col gap-2 flex-1'>
+              <span className='font-medium'>
                 {comment.user.name && comment.user.surname
                   ? comment.user.name + " " + comment.user.surname
                   : comment.user.username}
               </span>
               <p>{comment.desc}</p>
-              <div className="flex items-center gap-8 text-xs text-gray-500 mt-2">
-                <div className="flex items-center gap-4">
+              <div className='flex items-center gap-8 text-xs text-gray-500 mt-2'>
+                <div className='flex items-center gap-4'>
                   <Image
-                    src="/like.png"
-                    alt=""
+                    src='/like.png'
+                    alt=''
                     width={12}
                     height={12}
-                    className="cursor-pointer w-4 h-4"
+                    className='cursor-pointer w-4 h-4'
                   />
-                  <span className="text-GrayCalido">|</span>
-                  <span className="text-GrayCalido">0 Likes</span>
+                  <span className='text-GrayCalido'>|</span>
+                  <span className='text-GrayCalido'>0 Likes</span>
                 </div>
-                <div className="text-GrayCalido">Responder</div>
+                <div className='text-GrayCalido'>Responder</div>
               </div>
             </div>
             {/* ICON */}
             <Image
-              src="/more.png"
-              alt=""
+              src='/more.png'
+              alt=''
               width={16}
               height={16}
-              className="cursor-pointer w-4 h-4"
+              className='cursor-pointer w-4 h-4'
             ></Image>
           </div>
         ))}
