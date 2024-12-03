@@ -38,13 +38,13 @@ export async function POST(req: NextRequest) {
 
       // Asegurarse de que el servidor WebSocket funcione
       res.socket.server.io = io;
-      res.end();
+      res.end(); // No necesitamos envolverlo en una promesa
     }
   };
 
-  return new Promise((resolve, reject) => {
-    socketHandler(req, NextResponse);
-  });
+  socketHandler(req, NextResponse); // Ahora simplemente invocamos el handler sin envolverlo en una promesa
+
+  return NextResponse.json({ message: "WebSocket initialized" }); // Respuesta correcta
 }
 
 export const config = {
