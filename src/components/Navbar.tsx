@@ -11,11 +11,11 @@ import {
 
 const Navbar = () => {
   return (
-    <div className='h-24 flex items-center justify-between'>
+    <div className='h-18 flex items-center justify-between'>
       {/* LEFT */}
       <div className='md:hidden lg:block w-[20%]'>
         <img
-          src='other_img/logo.svg'
+          src='/logo.svg'
           alt='logo'
           className='w-10 h-10'
         />

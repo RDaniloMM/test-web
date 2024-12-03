@@ -28,16 +28,16 @@ const ProfileCard = async () => {
       <div className="h-20 relative">
         <Image
           src={user.cover || "/noCover.png"}
-          alt=""
+          alt=''
           fill
-          className="rounded-md object-cover"
+          className='rounded-md object-cover'
         />
         <Image
           src={user.avatar || "/noAvatar.png"}
-          alt=""
+          alt=''
           width={48}
           height={48}
-          className="rounded-full object-cover w-12 h-12 absolute left-0 right-0 m-auto -bottom-6 ring-1 ring-white z-10"
+          className='rounded-full object-cover w-12 h-12 absolute left-0 right-0 m-auto -bottom-6 ring-1 ring-white z-10'
         />
       </div>
       <div className="h-20 flex flex-col gap-2 items-center text-WhiteCalido">
@@ -46,28 +46,28 @@ const ProfileCard = async () => {
             ? user.name + " " + user.surname
             : user.username}
         </span>
-        <div className="flex items-center gap-4">
-          <div className="flex">
+        <div className='flex items-center gap-4'>
+          <div className='flex'>
             <Image
-              src="https://images.pexels.com/photos/19578755/pexels-photo-19578755/free-photo-of-woman-watching-birds-and-landscape.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
-              alt=""
+              src='https://images.pexels.com/photos/19578755/pexels-photo-19578755/free-photo-of-woman-watching-birds-and-landscape.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load'
+              alt=''
               width={12}
               height={12}
-              className="rounded-full object-cover w-3 h-3"
+              className='rounded-full object-cover w-3 h-3'
             />
             <Image
-              src="https://images.pexels.com/photos/19578755/pexels-photo-19578755/free-photo-of-woman-watching-birds-and-landscape.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
-              alt=""
+              src='https://images.pexels.com/photos/19578755/pexels-photo-19578755/free-photo-of-woman-watching-birds-and-landscape.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load'
+              alt=''
               width={12}
               height={12}
-              className="rounded-full object-cover w-3 h-3"
+              className='rounded-full object-cover w-3 h-3'
             />
             <Image
-              src="https://images.pexels.com/photos/19578755/pexels-photo-19578755/free-photo-of-woman-watching-birds-and-landscape.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
-              alt=""
+              src='https://images.pexels.com/photos/19578755/pexels-photo-19578755/free-photo-of-woman-watching-birds-and-landscape.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load'
+              alt=''
               width={12}
               height={12}
-              className="rounded-full object-cover w-3 h-3"
+              className='rounded-full object-cover w-3 h-3'
             />
           </div>
           <span className="text-xs text-GrayCalido">
