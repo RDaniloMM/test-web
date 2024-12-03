@@ -1,35 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 interface ChatInputProps {
-  onSendMessage: (message: string) => void
+  onSendMessage: (message: string) => void;
 }
 
 export function ChatInput({ onSendMessage }: ChatInputProps) {
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (message.trim()) {
-      onSendMessage(message)
-      setMessage('')
+      onSendMessage(message);
+      setMessage("");
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className='flex gap-2'
+    >
       <input
-        type="text"
+        type='text'
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type a message..."
-        className="flex-1 p-2 border rounded"
+        placeholder='Escribe un mensaje...'
+        className='flex-1 p-2 border rounded'
       />
-      <button 
-        type="submit" 
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+      <button
+        type='submit'
+        className='bg-blue-500 text-white px-4 py-2 rounded'
       >
-        Send
+        Enviar
       </button>
     </form>
-  )
+  );
 }

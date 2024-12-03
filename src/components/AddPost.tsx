@@ -72,7 +72,7 @@ const AddPost = () => {
                     width={20}
                     height={20}
                   />
-                  Imágen
+                  Imagen
                 </div>
               );
             }}
@@ -85,24 +85,6 @@ const AddPost = () => {
               height={20}
             />
             Video
-          </div>
-          <div className='flex items-center gap-2 cursor-pointer text-WhiteCalido'>
-            <Image
-              src='/poll.png'
-              alt=''
-              width={20}
-              height={20}
-            />
-            Encuesta
-          </div>
-          <div className='flex items-center gap-2 cursor-pointer text-WhiteCalido'>
-            <Image
-              src='/addevent.png'
-              alt=''
-              width={20}
-              height={20}
-            />
-            Evento
           </div>
         </div>
       </div>

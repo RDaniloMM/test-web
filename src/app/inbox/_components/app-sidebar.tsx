@@ -32,7 +32,7 @@ interface AppSidebarProps {
 
 const items = [
   { title: "Inicio", url: homeRoute, icon: HomeIcon },
-  { title: "Chats", url: chatRoute, icon: ChatBubbleLeftIcon },
+  { title: "Chats", url: "/inbox", icon: ChatBubbleLeftIcon },
   { title: "Recursos educativos", url: "/inbox", icon: CogIcon },
   { title: "Cursos", url: coursesRoute, icon: BookOpenIcon },
   { title: "Mis clases", url: "#", icon: AcademicCapIcon },
