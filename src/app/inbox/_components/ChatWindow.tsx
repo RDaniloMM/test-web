@@ -1,45 +1,86 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import io from "socket.io-client";
 
 interface Message {
-  id: number;
+  id: string;
   content: string;
-  sender: "user" | "me";
+  senderId: string;
+  receiverId: string;
   timestamp: string;
 }
 
-const messages: Message[] = [
-  { id: 1, content: "Hola, ¿cómo estás?", sender: "user", timestamp: "10:30 AM" },
-  { id: 2, content: "Todo bien, ¿y tú?", sender: "me", timestamp: "10:31 AM" },
-  { id: 3, content: "Bien, gracias. ¿Qué tal tu día?", sender: "user", timestamp: "10:32 AM" },
-  { id: 4, content: "Muy productivo, gracias.", sender: "me", timestamp: "10:33 AM" },
-  { id: 5, content: "Eso es genial.", sender: "user", timestamp: "10:34 AM" },
-];
+interface ChatWindowProps {
+  userId: string; // El id del usuario con el que estamos chateando
+}
 
-const ChatWindow = () => {
+const ChatWindow = ({ userId }: ChatWindowProps) => {
+  const { user: clerkUser } = useUser();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [messageContent, setMessageContent] = useState("");
+  const [socket, setSocket] = useState<any>(null);
+
+  useEffect(() => {
+    // Connect to Socket.io server
+    const socketInstance = io();
+
+    // Listen for incoming private messages
+    socketInstance.on("private_message", (newMessage: Message) => {
+      setMessages((prevMessages: Message[]) => [...prevMessages, newMessage]);
+    });
+
+    setSocket(socketInstance);
+
+    return () => {
+      socketInstance.disconnect();
+    };
+  }, []);
+
+  const handleSendMessage = async () => {
+    if (!messageContent || !socket || !clerkUser) return;
+
+    const newMessage: Message = {
+      id: crypto.randomUUID(),
+      senderId: clerkUser.id,
+      content: messageContent,
+      receiverId: userId,
+      timestamp: new Date().toISOString(),
+    };
+
+    // Emitir el mensaje al servidor para guardarlo en la base de datos
+    socket.emit("private_message", newMessage);
+
+    // Guardar temporalmente el mensaje en el cliente
+    setMessages((prevMessages: Message[]) => [...prevMessages, newMessage]);
+    setMessageContent("");
+  };
+
   return (
-    <div className="flex flex-col bg-BlackCalido rounded-lg shadow-lg h-full border border-BorderColor">
+    <div className='flex flex-col bg-BlackCalido rounded-lg shadow-lg h-full border border-BorderColor'>
       {/* Header del Chat */}
-      <div className="flex items-center justify-between bg-GrayOscuro p-4 rounded-lg mb-4 w-full border-b border-BorderColor">
-        <div className="flex items-center space-x-4">
-          <div className="w-10 h-10 bg-GrayCalido rounded-full"></div>
-          <h2 className="text-WhiteCalido text-lg">User 1</h2>
+      <div className='flex items-center justify-between bg-GrayOscuro p-4 rounded-lg mb-4 w-full border-b border-BorderColor'>
+        <div className='flex items-center space-x-4'>
+          <div className='w-10 h-10 bg-GrayCalido rounded-full'></div>
+          <h2 className='text-WhiteCalido text-lg'>{userId}</h2>
         </div>
       </div>
 
       {/* Lista de mensajes */}
-      <div className="flex-1 overflow-y-auto space-y-4 p-4">
+      <div className='flex-1 overflow-y-auto space-y-4 p-4'>
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${
-              message.sender === "me" ? "justify-end" : "justify-start"
+              message.senderId === clerkUser?.id
+                ? "justify-end"
+                : "justify-start"
             }`}
           >
             <div
               className={`${
-                message.sender === "me"
+                message.senderId === clerkUser?.id
                   ? "bg-VioletCalido text-WhiteCalido"
                   : "bg-GrayOscuro text-WhiteCalido"
               } p-3 rounded-lg max-w-xs`}
@@ -51,13 +92,18 @@ const ChatWindow = () => {
       </div>
 
       {/* Barra para escribir mensajes */}
-      <div className="flex items-center bg-BlackCalido p-3 rounded-lg">
+      <div className='flex items-center bg-BlackCalido p-3 rounded-lg'>
         <input
-          type="text"
-          placeholder="Escribir un mensaje..."
-          className="flex-1 bg-GrayOscuro text-WhiteCalido p-3 rounded-lg focus:outline-none border border-BorderColor placeholder-GrayCalido"
+          type='text'
+          placeholder='Escribir un mensaje...'
+          className='flex-1 bg-GrayOscuro text-WhiteCalido p-3 rounded-lg focus:outline-none border border-BorderColor placeholder-GrayCalido'
+          value={messageContent}
+          onChange={(e) => setMessageContent(e.target.value)}
         />
-        <button className="ml-4 bg-VioletCalido text-WhiteCalido p-3 rounded-lg">
+        <button
+          className='ml-4 bg-VioletCalido text-WhiteCalido p-3 rounded-lg'
+          onClick={handleSendMessage}
+        >
           Enviar
         </button>
       </div>
