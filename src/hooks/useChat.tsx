@@ -48,7 +48,7 @@ export function useChat(receiverId?: string) {
     return () => {
       socket?.disconnect();
     };
-  }, [receiverId]);
+  }, [receiverId, socket]);
   const sendMessage = async (content: string, receiverId?: string) => {
     if (!user || !socket) return;
 
