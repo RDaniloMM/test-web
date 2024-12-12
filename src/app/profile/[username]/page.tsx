@@ -7,8 +7,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { UserWithFollowers } from "@/types/types";
 
-const ProfilePage = async ({ params }: { params: { username: string } }) => {
-  const { username } = params; // Captura el parámetro username de la URL
+type Params = Promise<{ username: string }>
+const ProfilePage = async ({ params }: { params: Params }) => {
+  const { username } = await params; // Captura el parámetro username de la URL
 
   // Busca el usuario por su username
   const user: UserWithFollowers | null = await prisma.user.findFirst({
