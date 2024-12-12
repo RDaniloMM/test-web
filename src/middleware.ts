@@ -3,10 +3,10 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 // Define las rutas protegidas
 const isProtectedRoute = createRouteMatcher(["/settings(.*)", "/", "/inbox"]);
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   // Protege las rutas definidas
   if (isProtectedRoute(req)) {
-    auth().protect();
+    await auth().protect();
   }
 });
 

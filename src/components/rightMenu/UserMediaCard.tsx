@@ -18,24 +18,30 @@ const UserMediaCard = async ({ user }: { user: User }) => {
   });
 
   return (
-    <div className="p-4 bg-BlackCalido rounded-lg shadow-md text-sm flex flex-col gap-4 border border-BorderColor">
+    <div className='p-4 bg-BlackCalido rounded-lg shadow-md text-sm flex flex-col gap-4 border border-BorderColor'>
       {/* TOP */}
-      <div className="flex justify-between items-center font-medium">
-        <span className="text-WhiteCalido">Contenido del Usuario</span>
-        <Link href="/" className="text-VioletCalido text-xs">
+      <div className='flex justify-between items-center font-medium'>
+        <span className='text-WhiteCalido'>Contenido del Usuario</span>
+        <Link
+          href='/'
+          className='text-VioletCalido text-xs'
+        >
           Ver todo
         </Link>
       </div>
       {/* BOTTOM */}
-      <div className="flex gap-4 justify-between flex-wrap">
+      <div className='flex gap-4 justify-between flex-wrap'>
         {postsWithMedia.length
           ? postsWithMedia.map((post) => (
-              <div className="relative w-1/5 h-24" key={post.id}>
+              <div
+                className='relative w-1/5 h-24'
+                key={post.id}
+              >
                 <Image
-                  src={post.img!}
-                  alt=""
+                  src={post.img || "/noImage.png"}
+                  alt=''
                   fill
-                  className="object-cover rounded-md"
+                  className='object-cover rounded-md'
                 />
               </div>
             ))
